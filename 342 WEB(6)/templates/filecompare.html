@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Comparison System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('home') }}" id="home" class="logo">Twogether</a>
+        </div>
+        <div class="nav-options">
+            <div class="dropdown">
+                <button class="dropbtn">Services</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('text_comparison') }}" id="textMode">Text Similarity</a>
+                    <a href="{{ url_for('file_comparison') }}" id="fileMode">Semantic Similarity</a>
+                </div>
+            </div>
+        </div>
+        <div class="user-logo">U</div>
+    </nav>
+
+    <div class="container-file">
+        <div class="left-panel">
+            <h2>กรอกหารายวิชาที่แนะนำ</h2>
+
+            <!-- Course selection section -->
+            <div class="form-group">
+                <label for="thaiCourseName">ชื่อวิชาภาษาไทย:</label>
+                <input type="text" id="thaiCourseName" class="form-control" placeholder="ป้อนชื่อวิชาภาษาไทย">
+            </div>
+
+            <div class="form-group">
+                <label for="preloadedFiles">เลือกไฟล์หลักสูตร:</label>
+                <select id="preloadedFiles" class="form-control">
+                    <option value="">-- เลือกไฟล์ --</option>
+                    <option value="1">1.ฝั่งที่ต้องการเทียบ-ปวส-มทรส-แบบไม่ตัดคำ.xlsx</option>
+                </select>
+            </div>
+
+            <button id="loadCourseBtn" class="btn">โหลดคำอธิบายรายวิชา</button>
+
+            <div class="form-group">
+                <label for="courseDescription">คำอธิบายรายวิชา:</label>
+                <textarea id="courseDescription" class="textarea-file" placeholder="คำอธิบายรายวิชาจะแสดงที่นี่..."
+                    readonly></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="inputText">ข้อความเพิ่มเติม (ถ้ามี):</label>
+                <textarea id="inputText" class="textarea-file"
+                    placeholder="สามารถเพิ่มข้อความเพิ่มเติมได้ที่นี่..."></textarea>
+            </div>
+
+            <div class="file-upload-container">
+                <h3>อัปโหลดไฟล์หลักสูตรเปรียบเทียบ</h3>
+                <input type="file" id="dbUpload" accept=".xlsx" style="display: none;">
+                <button class="uploadBtn" id="uploadBtn">อัปโหลดไฟล์</button>
+                <span id="dbStatus"></span>
+            </div>
+
+            <button id="compareBtn">ประมวลผล</button>
+        </div>
+
+        <div class="right-panel">
+            <h2>รายวิชาที่มีค่าความเหมือน</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>อันดับ</th>
+                        <th>รหัสวิชา</th>
+                        <th>ชื่อวิชาภาษาไทย</th>
+                        <th>คำอธิบายรายวิชา</th>
+                        <th>คะแนน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bottom-result-container">
+        <div class="result-display">
+            <h2>รายวิชาที่แนะนำเทียบโอน:</h2>
+            <div id="topCourseResult">-</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="/static/script2.js"></script>
+</body>
+
+</html>
