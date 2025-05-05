@@ -42,11 +42,11 @@ try:
     # Initialize the model and tokenizer
     GEMMA_TOKENIZER = AutoTokenizer.from_pretrained(
     "google/gemma-2b",
-    token=HF_API_TOKEN  # Use the environment variable
+    token=os.getenv("HF_API_TOKEN")  # Use the environment variable
     )
     GEMMA_MODEL = AutoModelForSequenceClassification.from_pretrained(
     "google/gemma-2b",
-    token=HF_API_TOKEN,  # Use the environment variable
+    token=os.getenv("HF_API_TOKEN"),  # Use the environment variable
     torch_dtype=torch.bfloat16,
     device_map="auto"
     ).eval()
