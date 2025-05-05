@@ -42,14 +42,12 @@ torch.set_float32_matmul_precision('medium')
 # Initialize models
 try:
     # Initialize the model and tokenizer
-    GEMMA_TOKENIZER = AutoTokenizer.from_pretrained(
-    "google/gemma-2b",
-    token=os.getenv("HF_API_TOKEN")  # Use the environment variable
-    )
+    model_id = "google/gemma-2b-it"
+    GEMMA_TOKENIZER = AutoTokenizer.from_pretrained(model_id, token=HF_API_TOKEN)
     GEMMA_MODEL = AutoModelForSequenceClassification.from_pretrained(
-    "google/gemma-2b",
-    token=os.getenv("HF_API_TOKEN"),  # Use the environment variable
-    torch_dtype=torch.bfloat16,
+    model_id,
+    token=HF_API_TOKEN,
+    torch_dtype=torch.float16,  # 16-bit to save memory
     device_map="auto"
     ).eval()
     
