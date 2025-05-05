@@ -34,7 +34,9 @@ app.config['ALLOWED_EXTENSIONS'] = {'xlsx'}
 # Replace the hardcoded token with the environment variable
 HF_API_TOKEN = os.getenv("HF_API_TOKEN")
 
-
+# Reduce PyTorch memory footprint
+torch.backends.cuda.enable_flash_sdp(True)  
+torch.set_float32_matmul_precision('medium')
 
 
 # Initialize models
