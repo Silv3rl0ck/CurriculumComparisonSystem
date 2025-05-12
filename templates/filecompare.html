@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Curriculum Comparison System</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('home') }}" class="logo">Twogether</a>
+        </div>
+
+
+        <div class="nav-options">
+            <div class="dropdown">
+                <button class="dropbtn">Services</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('textcompare') }}">Text Similarity</a>
+                    <a href="{{ url_for('filecompare') }}">Semantic Similarity</a>
+                </div>
+            </div>
+            <a href="{{ url_for('preload') }}" class="nav-link">Upload Source</a>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container-file">
+        <div class="left-panel">
+            <h2>กรอกหารายวิชาที่แนะนำ</h2>
+
+            <div class="form-group">
+                <label for="thaiCourseName">ชื่อวิชาภาษาไทย:</label>
+                <input type="text" id="thaiCourseName" class="form-control" placeholder="ป้อนชื่อวิชา">
+            </div>
+
+            <div class="form-group">
+                <label for="preloadedFiles">เลือกไฟล์หลักสูตรต้นทาง:</label>
+                <select id="preloadedFiles" class="form-control">
+                    <option value="">-- กำลังโหลดไฟล์… --</option>
+                </select>
+            </div>
+
+            <button id="loadCourseBtn" class="btn">โหลดคำอธิบายรายวิชา</button>
+
+            <div class="form-group">
+                <label for="courseDescription">คำอธิบายรายวิชา:</label>
+                <textarea id="courseDescription" class="textarea-file" readonly placeholder="จะแสดงที่นี่…"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="inputText">ข้อความเพิ่มเติม (ถ้ามี):</label>
+                <textarea id="inputText" class="textarea-file" placeholder="…"></textarea>
+            </div>
+
+            <div class="file-upload-container">
+                <h3>อัปโหลดไฟล์เพื่อเทียบโอน</h3>
+                <input type="file" id="dbUpload" accept=".xlsx" style="display:none" />
+                <button class="uploadBtn" id="uploadBtn">เลือกรายวิชา (.xlsx)</button>
+                <span id="dbStatus"></span>
+            </div>
+
+            <button id="compareBtn">ประมวลผล</button>
+        </div>
+
+        <div class="right-wrapper">
+            <div class="right-panel">
+                <h2>รายวิชาที่มีค่าความเหมือน</h2>
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>อันดับ</th>
+                            <th>รหัส</th>
+                            <th>ชื่อวิชา</th>
+                            <th>คำอธิบาย</th>
+                            <th>คะแนน</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="recommendationSection" class="recommendation-panel">
+                <h2>รายวิชาที่แนะนำเทียบโอน:</h2>
+                <div id="topCourseResult">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script_semantic.js"></script>
+</body>
+
+</html>

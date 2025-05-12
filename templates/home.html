@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Curriculum Comparison System</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('home') }}" class="logo">Twogether</a>
+        </div>
+        <div class="nav-options">
+            <div class="dropdown">
+                <button class="dropbtn">Services</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('textcompare') }}">Text Similarity</a>
+                    <a href="{{ url_for('filecompare') }}">Semantic Similarity</a>
+                </div>
+            </div>
+            <a href="{{ url_for('preload') }}" class="nav-link">Upload Source</a>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- ── TITLE CARD ────────────────────────────────────────────────────────── -->
+    <div class="full-width-title">
+        <div class="title-content">
+            <h1>Curriculum Comparison System</h1>
+        </div>
+    </div>
+
+    <!-- ── MAIN CONTENT ──────────────────────────────────────────────────────── -->
+    <main class="home-main">
+        <!-- Big Buttons -->
+        <div class="square-button-wrapper">
+            <a href="{{ url_for('textcompare') }}" class="square-button text-compare">
+                <span>Text Similarity</span>
+            </a>
+            <a href="{{ url_for('filecompare') }}" class="square-button file-compare">
+                <span>Semantic Similarity</span>
+            </a>
+        </div>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-wrapper">
+                <div class="step-card">
+                    <div class="step-icon">📁</div>
+                    <h3>1. Upload Database</h3>
+                    <p>Upload your school’s curriculum file in .xlsx format.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">🔍</div>
+                    <h3>2. Enter Course</h3>
+                    <p>Load a course name/description to compare.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">⚡</div>
+                    <h3>3. Get Recommendations</h3>
+                    <p>Receive top transfer recommendations instantly.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+    <footer>
+        <p>© 2025 Twogether. All Rights Reserved.</p>
+    </footer>
+
+    <script src="/static/script_home.js"></script>
+</body>
+
+</html>

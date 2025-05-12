@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Upload Source Curriculum</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('home') }}" class="logo">Twogether</a>
+        </div>
+
+        <div class="nav-options">
+            <div class="dropdown">
+                <button class="dropbtn">Services</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('textcompare') }}">Text Similarity</a>
+                    <a href="{{ url_for('filecompare') }}">Semantic Similarity</a>
+                </div>
+            </div>
+            <a href="{{ url_for('preload') }}" class="nav-link">Upload Source</a>
+            <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+        </div>
+    </nav>
+
+    <main style="padding:20px; margin-top:70px;">
+        <h2>อัปโหลดไฟล์หลักสูตรต้นทาง</h2>
+        <div class="file-upload-container">
+            <input type="file" id="preloadUpload" accept=".xlsx" style="display:none" />
+            <button id="preloadBtn" class="uploadBtn">เลือกรายวิชา (.xlsx)</button>
+            <span id="preloadStatus"></span>
+        </div>
+
+
+        <div class="uploaded-list" style="margin-top:30px;">
+            <h3>ไฟล์หลักสูตรต้นทางที่อัปโหลดแล้ว</h3>
+            <table id="preloadedFilesTable">
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filled by script here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/static/script_preload.js"></script>
+</body>
+
+</html>
